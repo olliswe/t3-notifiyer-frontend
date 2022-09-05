@@ -12,6 +12,8 @@ interface IHomePage {
 }
 
 const HomePage = ({ tournaments }: IHomePage) => {
+  console.log({ tournaments });
+
   return (
     <>
       <div className="min-h-full">
