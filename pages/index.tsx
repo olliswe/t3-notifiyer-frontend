@@ -1,13 +1,17 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import classNames from "classnames";
 import { API_URL } from "../utils/constants";
 import { Tournament } from "../utils/models";
+import { GetServerSideProps } from "next";
 
 const navigation = [{ name: "Warhammer 40k", href: "#", current: true }];
 
-export default function HomePage({ to }) {
+interface IHomePage {
+  tournaments: Tournament;
+}
+
+const HomePage = ({ tournaments }: IHomePage) => {
   return (
     <>
       <div className="min-h-full">
@@ -83,7 +87,7 @@ export default function HomePage({ to }) {
           <header>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <h1 className="text-3xl font-bold leading-tight text-gray-900">
-                Upcoming WARHAMMER 40k Tournaments on T3
+                Upcoming Warhammer 40k Tournaments on T3
               </h1>
             </div>
           </header>
@@ -157,13 +161,15 @@ export default function HomePage({ to }) {
       </div>
     </>
   );
-}
+};
 
-export async function getServerSideProps:GetServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const res = await fetch(`${API_URL}/tournaments`);
   const { tournaments }: { tournaments: Tournament[] } = await res.json();
 
   return {
     props: { tournaments }, // will be passed to the page component as props
   };
-}
+};
+
+export default HomePage;
