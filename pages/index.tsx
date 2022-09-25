@@ -8,12 +8,10 @@ import { GetServerSideProps } from "next";
 const navigation = [{ name: "Warhammer 40k", href: "#", current: true }];
 
 interface IHomePage {
-  tournaments: Tournament;
+  tournaments: Tournament[];
 }
 
 const HomePage = ({ tournaments }: IHomePage) => {
-  console.log({ tournaments });
-
   return (
     <>
       <div className="min-h-full">
@@ -108,50 +106,45 @@ const HomePage = ({ tournaments }: IHomePage) => {
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Title
+                      Date
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Email
+                      Location
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Role
+                      Seats
                     </th>
                     <th
                       scope="col"
-                      className="relative py-3.5 pl-3 pr-4 sm:pr-6"
+                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      <span className="sr-only">Edit</span>
+                      Signup
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                  {[].map((person: any) => (
-                    <tr key={person.email}>
+                  {tournaments.map((tournament: Tournament) => (
+                    <tr key={tournament.id}>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                        {person.name}
+                        {tournament.name}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {person.title}
+                        {tournament.tournamentDate}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {person.email}
+                        {tournament.location}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {person.role}
+                        {tournament.seats}
                       </td>
-                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a
-                          href="#"
-                          className="text-indigo-600 hover:text-indigo-900"
-                        >
-                          Edit<span className="sr-only">, {person.name}</span>
-                        </a>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        {tournament.signupDisabled ? "closed" : "open"}
                       </td>
                     </tr>
                   ))}

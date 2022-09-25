@@ -7,4 +7,5 @@ export interface Tournament {
   signupDisabled: boolean;
   location: string;
   seats: string;
+  name: string;
 }
