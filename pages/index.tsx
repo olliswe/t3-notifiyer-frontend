@@ -2,13 +2,15 @@ import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import classNames from "classnames";
 import { API_URL } from "../utils/constants";
-import { Tournament } from "../utils/models";
+import { ITournament } from "../utils/models";
 import { GetServerSideProps } from "next";
+import TournamentsTable from "../components/TournamentsTable";
+import SignupButton from "../components/SignupButton";
 
 const navigation = [{ name: "Warhammer 40k", href: "#", current: true }];
 
 interface IHomePage {
-  tournaments: Tournament[];
+  tournaments: ITournament[];
 }
 
 const HomePage = ({ tournaments }: IHomePage) => {
@@ -92,64 +94,11 @@ const HomePage = ({ tournaments }: IHomePage) => {
             </div>
           </header>
           <main>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+              <SignupButton />
+            </div>
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-              <table className="min-w-full divide-y divide-gray-300 mt-10">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
-                    >
-                      Name
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Date
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Location
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Seats
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Signup
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
-                  {tournaments.map((tournament: Tournament) => (
-                    <tr key={tournament.id}>
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                        {tournament.name}
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {tournament.tournamentDate}
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {tournament.location}
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {tournament.seats}
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {tournament.signupDisabled ? "closed" : "open"}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <TournamentsTable tournaments={tournaments} />
             </div>
           </main>
         </div>
@@ -160,7 +109,7 @@ const HomePage = ({ tournaments }: IHomePage) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const res = await fetch(`${API_URL}/tournaments`);
-  const { tournaments }: { tournaments: Tournament[] } = await res.json();
+  const { tournaments }: { tournaments: ITournament[] } = await res.json();
 
   return {
     props: { tournaments }, // will be passed to the page component as props

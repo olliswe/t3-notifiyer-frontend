@@ -1,4 +1,4 @@
-export interface Tournament {
+export interface ITournament {
   id: number;
   createdAt: Date;
   updatedAt: Date;
