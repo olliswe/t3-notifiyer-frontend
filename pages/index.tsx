@@ -97,9 +97,7 @@ const HomePage = ({ tournaments }: IHomePage) => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
               <SignupButton />
             </div>
-            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-              <TournamentsTable tournaments={tournaments} />
-            </div>
+            <TournamentsTable tournaments={tournaments} />
           </main>
         </div>
       </div>
