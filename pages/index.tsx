@@ -89,7 +89,7 @@ const HomePage = ({ tournaments }: IHomePage) => {
           <header>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <h1 className="text-3xl font-bold leading-tight text-gray-900">
-                Upcoming Warhammer 40k Tournaments on T3
+                Anstehende Warhammer 40k-Turniere auf T3
               </h1>
             </div>
           </header>

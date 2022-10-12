@@ -12,17 +12,17 @@ const columns: ColumnsType<ITournament> = [
     key: "name",
   },
   {
-    title: "Date",
+    title: "Datum",
     dataIndex: "tournamentDate",
     key: "tournamentDate",
   },
   {
-    title: "Location",
+    title: "Ort",
     dataIndex: "location",
     key: "location",
   },
   {
-    title: "Seats",
+    title: "Plätze",
     dataIndex: "seats",
     key: "seats",
   },
@@ -40,7 +40,7 @@ const columns: ColumnsType<ITournament> = [
           }
         )}
       >
-        {value ? "Closed" : "Open"}
+        {value ? "Geschlossen" : "Offen"}
       </span>
     ),
   },

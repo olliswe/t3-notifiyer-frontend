@@ -42,7 +42,7 @@ const SignupButton = () => {
         htmlFor="email"
         className="block text-sm font-medium text-gray-700"
       >
-        Signup to updates via email
+        Melden Sie sich für Updates per E-Mail an
       </label>
       <div className="flex mt-1 gap-x-2 items-center">
         <div className="flex rounded-md shadow-sm w-[500px]">
@@ -55,7 +55,7 @@ const SignupButton = () => {
               name="email"
               id="email"
               className="block w-full rounded-none rounded-l-md border-gray-300 pl-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              placeholder="Enter your email"
+              placeholder="Email eingeben"
               onChange={handleChange}
               value={email}
             />
@@ -70,7 +70,7 @@ const SignupButton = () => {
               className="h-5 w-5 text-gray-400"
               aria-hidden="true"
             />
-            <span>Submit</span>
+            <span>Übermitteln</span>
           </button>
         </div>
         <Rings
@@ -83,7 +83,7 @@ const SignupButton = () => {
           visible={loading}
           ariaLabel="rings-loading"
         />
-        {success && <span className="text-green-500">Success!</span>}
+        {success && <span className="text-green-500">Erfolg!</span>}
         {error && <span className="text-red-500">{error}</span>}
       </div>
     </div>
